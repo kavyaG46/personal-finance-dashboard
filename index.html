@@ -1,0 +1,157 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack - Personal Finance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+        <h2 class="logo">💸 FinTrack</h2>
+
+        <p class="menu-title">MENU</p>
+        <a class="nav active" href="#overview">▦ Dashboard</a>
+        <a class="nav" href="#transactions">↔ Transactions</a>
+        <a class="nav" href="#budget">◎ Budget</a>
+
+        <div class="sidebar-bottom">
+            <p>Manage your money.</p>
+            <small>Make every rupee count ✨</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Dashboard</h1>
+                <p class="muted">Welcome back! Here's your financial overview.</p>
+            </div>
+            <button id="themeBtn" class="theme-btn">🌙 Dark Mode</button>
+        </header>
+
+        <section id="overview" class="summary-grid">
+
+            <div class="summary-card balance-card">
+                <p>Total Balance</p>
+                <h2 id="balance">₹25,000</h2>
+                <span>💰 Your available money</span>
+            </div>
+
+            <div class="summary-card">
+                <p>Total Income</p>
+                <h2 id="income">₹40,000</h2>
+                <span class="positive">↗ Money received</span>
+            </div>
+
+            <div class="summary-card">
+                <p>Total Expenses</p>
+                <h2 id="expenses">₹15,000</h2>
+                <span class="negative">↘ Money spent</span>
+            </div>
+        </section>
+
+        <section class="content-grid">
+
+            <div class="panel chart-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Expense Overview</h3>
+                        <p class="muted">Where your money goes</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+
+            <div class="panel" id="budget">
+                <h3>Monthly Budget</h3>
+                <p class="muted">Your spending limit</p>
+
+                <div class="budget-amount">
+                    <strong id="budgetSpent">₹15,000</strong>
+                    <span>of ₹25,000</span>
+                </div>
+
+                <div class="progress-track">
+                    <div id="budgetProgress" class="progress-fill"></div>
+                </div>
+
+                <p id="budgetMessage" class="muted">60% of your budget used</p>
+
+                <label for="budgetInput">Set monthly budget (₹)</label>
+                <div class="budget-input-row">
+                    <input id="budgetInput" type="number" min="1" value="25000">
+                    <button id="saveBudget">Save</button>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="transactions" class="panel transactions-panel">
+            <div class="transaction-heading">
+                <div>
+                    <h3>Recent Transactions</h3>
+                    <p class="muted">Track your income and expenses</p>
+                </div>
+                <button id="addBtn" class="primary-btn">+ Add Transaction</button>
+            </div>
+
+            <form id="transactionForm" class="transaction-form hidden">
+                <input id="titleInput" type="text" placeholder="Transaction name" required>
+
+                <input id="amountInput" type="number" min="1" step="0.01"
+                       placeholder="Amount (₹)" required>
+
+                <select id="typeInput">
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                </select>
+
+                <select id="categoryInput">
+                    <option value="Food">Food</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Education">Education</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <button class="primary-btn" type="submit">Save</button>
+            </form>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionList"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyMessage" class="muted hidden">No transactions yet. Add one to get started!</p>
+        </section>
+
+        <footer>© 2026 FinTrack · Personal Finance Dashboard</footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+```
